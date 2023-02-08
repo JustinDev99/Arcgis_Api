@@ -5,13 +5,13 @@ require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, 
     esriConfig.apiKey = "MY_API_TOKEN";
 
     const map = new Map({
-      basemap: "arcgis-topographic" // Basemap layer service
+      basemap: "dark-gray" // Basemap layer service
     });
 
     const view = new MapView({
         map: map,
-        center: [-118.805, 34.027], // Longitude, latitude
-        zoom: 13, // Zoom level
+        center: [-123.116226, 49.246292], // Longitude, latitude
+        zoom: 12, // Zoom level
         container: "viewDiv" // Div element
     });
 });
