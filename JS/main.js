@@ -6,31 +6,32 @@ function
 
     esriConfig.apiKey = "MY_API_TOKEN";
 
-    //Create geojson layer for BC Floodplain layer
+  //Create NYC Borough Layer
 
-    floodurl = "data/CWB_FLOODPLAINS_BC_AREA_SVW.geojson";
+  boundaryurl = "data/Borough Boundaries.geojson";
 
-    const floodlayer = new GeoJSONLayer ({
-      url: floodurl
-    });
+  const boundarylayer = new GeoJSONLayer ({
+    url: boundaryurl,
+    opacity: "0.7"
+  });
 
-    //Create disaster response route geojson layer
+  //Create NYC Bike Route Layer
 
-    disasterurl = "data/DRP_DISASTER_RESPNSE_ROUTES_SP.geojson";
+  BikeUrl = "data/New York City Bike Routes.geojson";
 
-    const disasterlayer = new GeoJSONLayer ({
-      url: disasterurl
-    });
+  const bikelayer = new GeoJSONLayer ({
+    url: BikeUrl
+  });
 
     const map = new Map({
       basemap: "dark-gray", // Basemap layer service
-      layers: [floodlayer, disasterlayer]
+      layers: [boundarylayer, bikelayer]
     });
 
     const view = new MapView({
         map: map,
-        center: [-122.911110, 49.206944], // Longitude, latitude
-        zoom: 11, // Zoom level
+        center: [-74.006016, 40.714761], // Longitude, latitude
+        zoom: 10, // Zoom level
         container: "viewDiv" // Div element
     });
 });
