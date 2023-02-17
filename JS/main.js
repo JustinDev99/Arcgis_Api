@@ -1,8 +1,8 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/layers/GeoJSONLayer"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
 function
-(esriConfig, Map, MapView, GeoJSONLayer) {
+(esriConfig, Map, MapView, GeoJSONLayer, Home) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
 
@@ -25,7 +25,7 @@ function
 
     const map = new Map({
       basemap: "dark-gray", // Basemap layer service
-      layers: [boundarylayer, bikelayer]
+      layers: [bikelayer, boundarylayer]
     });
 
     const view = new MapView({
@@ -34,4 +34,11 @@ function
         zoom: 10, // Zoom level
         container: "viewDiv" // Div element
     });
+
+      //Create home zoom widget to return to initial zoom level
+
+    let homebtn = new Home ({
+      view: view
+    });
+    view.ui.add(homebtn, "top-left");
 });
