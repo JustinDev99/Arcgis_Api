@@ -1,10 +1,82 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
 function
-(esriConfig, Map, MapView, GeoJSONLayer, Home) {
+(esriConfig, Map, MapView, UniqueValueRenderer, GeoJSONLayer, Home) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
+  
+  //Create simple fill Render for Borough Layer
+
+  const colors = ["#d92b30", "#3cccb4", "#ffdf3c", "#c27c30", "#f260a1"];
+
+  const boroughs = {
+    type: "simple-fill",
+    style: "solid",
+  };
+
+  const statenIsland = {
+    ...boroughs,
+    color: colors[0]
+  };
+
+  const Brooklyn = {
+    ...boroughs,
+    color: colors[1]
+  };
+
+  const Manhattan = {
+    ...boroughs,
+    color: colors[2]
+  };
+
+  const Queens = {
+    ...boroughs,
+    color: colors[3]
+  };
+
+  const Bronx = {
+    ...boroughs,
+    color: colors[4]
+  };
+
+  const boro_render = {
+    type: "unique-value",
+    legendOptions: {
+      title: "Borough Name"
+    },
+    field: "boro_name",
+
+    uniqueValueInfos: [
+      {
+        value: "Staten Island",
+        symbol: statenIsland,
+        label: "Staten Island"
+      },
+      {
+        value: "Brooklyn",
+        symbol: Brooklyn,
+        label: "Brooklyn"
+      },
+      {
+        value: "Manhattan",
+        symbol: Manhattan,
+        label: "Manhattan"
+      },
+      {
+        value: "Queens",
+        symbol: Queens,
+        label: "Queens"
+      },
+      {
+        value: "Bronx",
+        symbol: Bronx,
+        label: "Bronx"
+      }
+    ]
+  };
+
+
 
   //Create NYC Borough Layer
 
@@ -12,7 +84,8 @@ function
 
   const boundarylayer = new GeoJSONLayer ({
     url: boundaryurl,
-    opacity: "0.7"
+    opacity: "0.7",
+    renderer: boro_render
   });
 
   //Create NYC Bike Route Layer
