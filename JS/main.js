@@ -24,7 +24,7 @@ function
   const boroughs = {
     type: "simple-line",
     style: "solid",
-    width: "2px"
+    width: "3px",
   };
 
   const statenIsland = {
@@ -95,7 +95,7 @@ function
   const bikelayer = new GeoJSONLayer ({
     url: BikeUrl,
     renderer: bike_render,
-    effect: "bloom(2, 0.1, 1)"
+    effect: "bloom(2, 0px, 1%)"
   });
 
   //Create NYC Borough Layer
@@ -104,7 +104,6 @@ function
 
   const boundarylayer = new GeoJSONLayer ({
     url: boundaryurl,
-    opacity: "0.3",
     renderer: boro_render
   });
 
@@ -116,7 +115,7 @@ function
     const view = new MapView({
         map: map,
         center: [-74.006016, 40.714761], // Longitude, latitude
-        zoom: 10, // Zoom level
+        zoom: 11, // Zoom level
         container: "viewDiv" // Div element
     });
 
