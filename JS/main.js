@@ -1,11 +1,15 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/renderers/Renderer", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
+require(["esri/config", "esri/Map", "esri/views/MapView","esri/PopupTemplate", "esri/renderers/Renderer", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
 function
-(esriConfig, Map, MapView, Renderer, UniqueValueRenderer, GeoJSONLayer, Home) {
+(esriConfig, Map, MapView, PopupTemplate, Renderer, UniqueValueRenderer, GeoJSONLayer, Home) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
 
+  //create popup template for borough layer
+
+  
+  
   //Create renderer for bike path layer
 
   const bike_render = {
@@ -19,7 +23,7 @@ function
   
   //Create simple fill Render for Borough Layer
 
-  const colors = ["#d92b30", "#3cccb4", "#ffdf3c", "#c27c30", "#f260a1"];
+  const colors = ["#d92b30", "#3cccb4", "#000000", "#c27c30", "#FFD700"];
 
   const boroughs = {
     type: "simple-line",
@@ -97,6 +101,7 @@ function
     renderer: bike_render,
     effect: "bloom(2, 0px, 1%)"
   });
+
 
   //Create NYC Borough Layer
 
