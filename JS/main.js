@@ -1,14 +1,10 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView","esri/PopupTemplate", "esri/renderers/Renderer", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
 function
-(esriConfig, Map, MapView, PopupTemplate, Renderer, UniqueValueRenderer, GeoJSONLayer, Home) {
+(esriConfig, Map, MapView, UniqueValueRenderer, GeoJSONLayer, Home, Expand, Legend) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
-
-  //create popup template for borough layer
-
-  
   
   //Create renderer for bike path layer
 
@@ -123,6 +119,26 @@ function
         zoom: 11, // Zoom level
         container: "viewDiv" // Div element
     });
+
+    //Create Legend
+
+    const legend = new Expand({
+      content: new Legend({
+        view: view,
+        layerInfos: [{
+          layer: boundarylayer,
+          title: "NYC Boroughs"
+        },
+        {
+          layer: bikelayer,
+          title: "NYC Bike Routes"
+        }]
+      }),
+      view: view,
+      expanded: true
+    });
+
+    view.ui.add(legend, "bottom-left");
 
       //Create home zoom widget to return to initial zoom level
 
