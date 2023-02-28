@@ -128,6 +128,16 @@ function
         console.log('view is finished updating');
       });
 
+    //reactive utils watch function to listen for clicks on the view
+
+    reactiveUtils.on(
+      ()=> view,
+      "click",
+      (event)=>{
+        console.log('click event occured:', event)
+      }
+    );
+
     //Create Legend
 
     const legend = new Expand({
