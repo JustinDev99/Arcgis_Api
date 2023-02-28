@@ -1,8 +1,8 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/renderers/UniqueValueRenderer", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/core/reactiveUtils", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
 function
-(esriConfig, Map, MapView, UniqueValueRenderer, GeoJSONLayer, Home, Expand, Legend) {
+(esriConfig, Map, MapView, reactiveUtils, GeoJSONLayer, Home, Expand, Legend) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
   
@@ -119,6 +119,14 @@ function
         zoom: 11, // Zoom level
         container: "viewDiv" // Div element
     });
+
+    //when function to determine when view is loaded
+
+    reactiveUtils.when(
+      ()=> !view.updating,
+      ()=> {
+        console.log('view is finished updating');
+      });
 
     //Create Legend
 
