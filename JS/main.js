@@ -120,6 +120,20 @@ function
         container: "viewDiv" // Div element
     });
 
+    //Add Watch function to alert when feature layers are fully loaded 
+
+    reactiveUtils.once(
+      ()=> bikelayer.loadStatus === "loaded")
+      .then(()=>{
+        console.log('bike layer now loaded');
+      });
+
+    reactiveUtils.once(
+      ()=> boundarylayer.loadStatus === "loaded")
+      .then(()=>{
+        console.log('boundary layer is now loaded');
+      });
+
     //when function to determine when view is loaded
 
     reactiveUtils.when(
