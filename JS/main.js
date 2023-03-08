@@ -1,10 +1,12 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/core/reactiveUtils", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/core/reactiveUtils", "esri/layers/support/FeatureEffect", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
 function
-(esriConfig, Map, MapView, reactiveUtils, GeoJSONLayer, Home, Expand, Legend) {
+(esriConfig, Map, MapView, reactiveUtils, FeatureEffect, GeoJSONLayer, Home, Expand, Legend) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
+
+    let boroLayerView;
   
   //Create renderer for bike path layer
 
@@ -105,7 +107,8 @@ function
 
   const boundarylayer = new GeoJSONLayer ({
     url: boundaryurl,
-    renderer: boro_render
+    renderer: boro_render,
+    outFields: ["boro_name"]
   });
 
   const map = new Map({
@@ -151,6 +154,42 @@ function
         console.log('click event occured:', event)
       }
     );
+
+    //filter nodes
+
+    const filterNodes = document.querySelectorAll(`.boro_item`);
+    const filterElements = document.getElementById("filter");
+
+    //click handler event for selection
+
+    filterElements.addEventListener("click", filterByBoro);
+
+    function filterByBoro(event) {
+      const selectedBoro = event.target.getAttribute("data-boro");
+      boroLayerView.filter = {
+        where: "boro_name = '" + selectedBoro + "'"
+      };
+    }
+
+    view.whenLayerView(boundarylayer).then((layerView) => {
+      boroLayerView = layerView;
+
+      //UI
+      filterElements.style.visibility = "visible";
+      const filterExpand = new Expand ({
+        view:view,
+        content:filterElements,
+        expandIconClass: "esri-icon-filter",
+        group: "top-left"
+      });
+      //clear filters when pannel is closed
+      filterExpand.watch("expanded", () => {
+        if(!filterExpand.expanded) {
+          boroLayerView.filter = null;
+        }
+      });
+      view.ui.add(filterExpand, "top-left");
+    });
 
     //Create Legend
 
