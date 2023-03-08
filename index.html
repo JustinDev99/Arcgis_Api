@@ -14,15 +14,41 @@
         html,
         body,
         #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
         }
+        #filter {
+            height: 160px;
+            width: 100%;
+            visibility: hidden;
+        }
+        .boro_item {
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            vertical-align: baseline;
+            cursor: pointer;
+            height: 40px;
+        }
+        .boro_item:focus {
+            background-color: dimgray;
+        }
+        .boro_item:hover {
+            background-color: dimgray;
+        }
+
     </style>
 </head>
 <body>
     <div id="viewDiv"></div>
-    <button id="filter">Click This Button to Filter Data</button>
+    <div id="filter" class="esri-widget">
+        <div class="boro_item" data-boro="Bronx">Bronx</div>
+        <div class="boro_item" data-boro="Queens">Queens</div>
+        <div class="boro_item" data-boro="Manhattan">Manhattan</div>
+        <div class="boro_item" data-boro="Brooklyn">Brooklyn</div>
+        <div class="boro_item" data-boro="statenIsland">Staten Island</div>
+    </div>
 </body>
 </html>
