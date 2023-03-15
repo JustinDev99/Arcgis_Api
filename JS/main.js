@@ -167,11 +167,11 @@ function
     function filterByBoro(event) {
       const selectedBoro = event.target.getAttribute("data-boro");
       boroLayerView.filter = {
-        where: "boro_name = '" + selectedBoro + "'"
+        where: "boro = '" + selectedBoro + "'"
       };
     }
 
-    view.whenLayerView(boundarylayer).then((layerView) => {
+    view.whenLayerView(bikelayer).then((layerView) => {
       boroLayerView = layerView;
 
       //UI
