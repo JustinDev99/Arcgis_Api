@@ -1,8 +1,8 @@
 const token = config.MY_API_TOKEN;
 
-require(["esri/config", "esri/Map", "esri/views/MapView", "esri/core/reactiveUtils", "esri/layers/support/FeatureEffect", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
+require(["esri/config", "esri/Map", "esri/views/MapView", "esri/core/reactiveUtils", "esri/layers/GeoJSONLayer", "esri/widgets/Home", "esri/widgets/Expand", "esri/widgets/Legend"], 
 function
-(esriConfig, Map, MapView, reactiveUtils, FeatureEffect, GeoJSONLayer, Home, Expand, Legend) {
+(esriConfig, Map, MapView, reactiveUtils, GeoJSONLayer, Home, Expand, Legend) {
 
     esriConfig.apiKey = "MY_API_TOKEN";
 
@@ -210,6 +210,7 @@ function
     });
 
     view.ui.add(legend, "bottom-left");
+    view.ui.add("title", "top-right");
 
       //Create home zoom widget to return to initial zoom level
 
