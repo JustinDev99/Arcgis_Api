@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcgis Api for Javascript</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.25/"></script>
     <script type='text/javascript' src='config.js'></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.26/"></script>
     <script src="JS/main.js"></script>
 
     <style>
@@ -38,6 +38,14 @@
         .boro_item:hover {
             background-color: dimgray;
         }
+        #title {
+            padding: 10px;
+        }
+        #text {
+            font-size: 18pt;
+            font-weight: 60;
+            padding-bottom: 10px;
+        }
 
     </style>
 </head>
@@ -49,6 +57,9 @@
         <div class="boro_item" data-boro="1">Manhattan</div>
         <div class="boro_item" data-boro="3">Brooklyn</div>
         <div class="boro_item" data-boro="5">Staten Island</div>
+    </div>
+    <div id="title" class="esri-widget">
+        <div id="text">NYC Bike Routes By Borough</div>
     </div>
 </body>
 </html>
